@@ -51,6 +51,14 @@ export interface StringStatistics {
   topValues: Array<{ value: string; count: number }>;
 }
 
+export interface AIExplanation {
+  whatIsThis: string;
+  whyProblem: string;
+  howToFix: string[];
+  impact: string;
+  priority: 'high' | 'medium' | 'low';
+}
+
 export interface DataIssue {
   id: string;
   type: IssueType;
@@ -60,6 +68,7 @@ export interface DataIssue {
   affectedRows: number[];
   suggestedFix?: string;
   autoFixable: boolean;
+  aiExplanation?: AIExplanation;
 }
 
 export type IssueType =

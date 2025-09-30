@@ -5,6 +5,7 @@ import { TaskList } from './components/TaskList';
 import { DataPreview } from './components/DataPreview';
 import { ColumnStatistics } from './components/ColumnStatistics';
 import { ExportPanel } from './components/ExportPanel';
+import { IssuesOverview } from './components/IssuesOverview';
 import { CSVData, AnalysisResult, DataTask, ColumnProfile, DataIssue } from './types';
 import { generateTasks } from './utils/taskGenerator';
 import { calculateQualityScore } from './utils/qualityScore';
@@ -16,7 +17,7 @@ function App() {
   const [progress, setProgress] = useState(0);
   const [progressMessage, setProgressMessage] = useState('');
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
-  const [activeTab, setActiveTab] = useState<'overview' | 'tasks' | 'data' | 'stats' | 'export'>(
+  const [activeTab, setActiveTab] = useState<'overview' | 'issues' | 'tasks' | 'data' | 'stats' | 'export'>(
     'overview'
   );
 
@@ -222,6 +223,7 @@ function App() {
               <nav className="flex space-x-8">
                 {[
                   { id: 'overview', label: 'Overview', icon: '📊' },
+                  { id: 'issues', label: 'Issues', icon: '⚠️', badge: analysisResult.issues.length },
                   { id: 'tasks', label: 'Tasks', icon: '✅', badge: analysisResult.tasks.length },
                   { id: 'data', label: 'Data Preview', icon: '📋' },
                   { id: 'stats', label: 'Statistics', icon: '📈' },
@@ -278,6 +280,14 @@ function App() {
                     </div>
                   )}
                 </div>
+              )}
+
+              {activeTab === 'issues' && (
+                <IssuesOverview
+                  issues={analysisResult.issues}
+                  columnProfiles={analysisResult.columnProfiles}
+                  totalRows={analysisResult.csvData.rowCount}
+                />
               )}
 
               {activeTab === 'tasks' && (
