@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/nitza/**)",
+      "Bash(npx tailwindcss init:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

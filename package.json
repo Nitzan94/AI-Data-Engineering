@@ -1,0 +1,40 @@
+{
+  "name": "ai-data-engineering-orchestrator",
+  "version": "1.0.0",
+  "description": "AI-powered CSV analyzer and task orchestrator for data engineering",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext ts,tsx"
+  },
+  "keywords": [
+    "data-engineering",
+    "csv-analysis",
+    "ai",
+    "task-orchestrator"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@types/react": "^19.1.16",
+    "@types/react-dom": "^19.1.9",
+    "chart.js": "^4.5.0",
+    "papaparse": "^5.5.3",
+    "react": "^19.1.1",
+    "react-chartjs-2": "^5.3.0",
+    "react-dom": "^19.1.1",
+    "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@types/papaparse": "^5.3.16",
+    "@vitejs/plugin-react": "^5.0.4",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "vite": "^7.1.7"
+  }
+}
