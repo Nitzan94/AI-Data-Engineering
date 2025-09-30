@@ -6,6 +6,7 @@ import { DataPreview } from './components/DataPreview';
 import { ColumnStatistics } from './components/ColumnStatistics';
 import { ExportPanel } from './components/ExportPanel';
 import { IssuesOverview } from './components/IssuesOverview';
+import { EDAOverview } from './components/EDAOverview';
 import { CSVData, AnalysisResult, DataTask, ColumnProfile, DataIssue } from './types';
 import { generateTasks } from './utils/taskGenerator';
 import { calculateQualityScore } from './utils/qualityScore';
@@ -17,7 +18,7 @@ function App() {
   const [progress, setProgress] = useState(0);
   const [progressMessage, setProgressMessage] = useState('');
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
-  const [activeTab, setActiveTab] = useState<'overview' | 'issues' | 'tasks' | 'data' | 'stats' | 'export'>(
+  const [activeTab, setActiveTab] = useState<'overview' | 'issues' | 'tasks' | 'eda' | 'data' | 'stats' | 'export'>(
     'overview'
   );
 
@@ -225,8 +226,9 @@ function App() {
                   { id: 'overview', label: 'Overview', icon: '📊' },
                   { id: 'issues', label: 'Issues', icon: '⚠️', badge: analysisResult.issues.length },
                   { id: 'tasks', label: 'Tasks', icon: '✅', badge: analysisResult.tasks.length },
+                  { id: 'eda', label: 'EDA', icon: '📈' },
                   { id: 'data', label: 'Data Preview', icon: '📋' },
-                  { id: 'stats', label: 'Statistics', icon: '📈' },
+                  { id: 'stats', label: 'Statistics', icon: '🔢' },
                   { id: 'export', label: 'Export', icon: '📤' },
                 ].map((tab) => (
                   <button
@@ -292,6 +294,13 @@ function App() {
 
               {activeTab === 'tasks' && (
                 <TaskList tasks={analysisResult.tasks} onTaskUpdate={handleTaskUpdate} />
+              )}
+
+              {activeTab === 'eda' && (
+                <EDAOverview
+                  columnProfiles={analysisResult.columnProfiles}
+                  csvData={analysisResult.csvData}
+                />
               )}
 
               {activeTab === 'data' && (
