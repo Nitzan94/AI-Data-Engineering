@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { DataTask, IssueSeverity } from '../types';
 import { TaskCard } from './TaskCard';
 import { CodeModal } from './CodeModal';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 interface TaskListProps {
   tasks: DataTask[];
@@ -33,13 +36,22 @@ export const TaskList: React.FC<TaskListProps> = ({ tasks, onTaskUpdate }) => {
   });
 
   return (
-    <div className="card p-6">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold">Engineering Tasks</h2>
-        <div className="text-sm text-gray-600">
-          {filteredTasks.length} task{filteredTasks.length !== 1 ? 's' : ''}
+    <Card>
+      <CardHeader>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle>Engineering Tasks</CardTitle>
+            <CardDescription>
+              {filteredTasks.length} task{filteredTasks.length !== 1 ? 's' : ''} generated from data analysis
+            </CardDescription>
+          </div>
+          <Badge variant="outline" className="text-lg px-4 py-2">
+            {filteredTasks.length}
+          </Badge>
         </div>
-      </div>
+      </CardHeader>
+
+      <CardContent>
 
       {/* Filters */}
       <div className="flex flex-wrap gap-4 mb-6">
@@ -76,20 +88,24 @@ export const TaskList: React.FC<TaskListProps> = ({ tasks, onTaskUpdate }) => {
       <div className="grid grid-cols-4 gap-4 mb-6">
         {(['Critical', 'High', 'Medium', 'Low'] as IssueSeverity[]).map((severity) => {
           const count = tasks.filter((t) => t.severity === severity).length;
-          const badgeClass =
+          const badgeVariant =
             severity === 'Critical'
-              ? 'badge-critical'
+              ? 'destructive'
               : severity === 'High'
-                ? 'badge-high'
+                ? 'default'
                 : severity === 'Medium'
-                  ? 'badge-medium'
-                  : 'badge-low';
+                  ? 'secondary'
+                  : 'outline';
 
           return (
-            <div key={severity} className="p-4 bg-gray-50 rounded-lg text-center">
-              <div className={`${badgeClass} mb-2`}>{severity}</div>
-              <div className="text-2xl font-bold text-gray-900">{count}</div>
-            </div>
+            <Card key={severity} className="text-center">
+              <CardContent className="pt-6">
+                <Badge variant={badgeVariant as any} className="mb-3">
+                  {severity}
+                </Badge>
+                <div className="text-3xl font-bold">{count}</div>
+              </CardContent>
+            </Card>
           );
         })}
       </div>
@@ -129,6 +145,7 @@ export const TaskList: React.FC<TaskListProps> = ({ tasks, onTaskUpdate }) => {
       {selectedTask && (
         <CodeModal task={selectedTask} onClose={() => setSelectedTask(null)} />
       )}
-    </div>
+    </CardContent>
+    </Card>
   );
 };

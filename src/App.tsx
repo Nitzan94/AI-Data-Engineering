@@ -10,6 +10,9 @@ import { EDAOverview } from './components/EDAOverview';
 import { CSVData, AnalysisResult, DataTask, ColumnProfile, DataIssue } from './types';
 import { generateTasks } from './utils/taskGenerator';
 import { calculateQualityScore } from './utils/qualityScore';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
 
 type AppState = 'upload' | 'analyzing' | 'results';
 
@@ -96,34 +99,67 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-xs border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20">
+      {/* Modern Gradient Header */}
+      <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/80 border-b border-slate-200/50 shadow-lg shadow-slate-200/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
           <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">
-                AI Data Engineering Task Orchestrator
-              </h1>
-              <p className="text-sm text-gray-600 mt-1">
-                Intelligent CSV analysis and automated task generation
-              </p>
+            <div className="flex items-center gap-4">
+              {/* Logo/Icon with gradient */}
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl blur-xl opacity-40 animate-pulse"></div>
+                <div className="relative flex items-center justify-center w-14 h-14 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 rounded-2xl shadow-lg shadow-indigo-500/30 transform hover:scale-105 transition-transform duration-300">
+                  <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Title with gradient text */}
+              <div>
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent flex items-center gap-2">
+                  AI Data Engineering
+                  <Badge variant="secondary" className="text-xs px-2 py-0.5 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 text-blue-700 border-blue-200/50">
+                    v1.0
+                  </Badge>
+                </h1>
+                <p className="text-xs text-slate-600 mt-0.5 flex items-center gap-2">
+                  <span className="inline-block w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                  Intelligent CSV analysis powered by AI
+                </p>
+              </div>
             </div>
-            {state === 'results' && (
-              <button onClick={handleReset} className="btn-secondary flex items-center gap-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
-                  />
-                </svg>
-                New Analysis
-              </button>
-            )}
+
+            {/* Action buttons */}
+            <div className="flex items-center gap-3">
+              {state === 'results' && (
+                <>
+                  <Badge variant="outline" className="hidden sm:flex items-center gap-1.5 px-3 py-1.5">
+                    <svg className="w-3.5 h-3.5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    Analysis Complete
+                  </Badge>
+                  <Separator orientation="vertical" className="h-8 hidden sm:block" />
+                  <Button
+                    onClick={handleReset}
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 border-blue-200/50 text-blue-700 font-medium shadow-sm"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                    </svg>
+                    New Analysis
+                  </Button>
+                </>
+              )}
+            </div>
           </div>
         </div>
+
+        {/* Subtle animated gradient line */}
+        <div className="h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

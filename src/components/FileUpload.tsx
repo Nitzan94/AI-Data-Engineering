@@ -1,6 +1,9 @@
 import React, { useCallback, useState } from 'react';
 import { parseCSVFile, validateCSVFile } from '../utils/csvParser';
 import { CSVData } from '../types';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 
 interface FileUploadProps {
   onFileUpload: (data: CSVData) => void;
@@ -71,13 +74,15 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onFileUpload }) => {
 
   return (
     <div className="w-full max-w-2xl mx-auto">
+      <Card>
+        <CardContent className="pt-6">
       <div
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         className={`
           relative border-2 border-dashed rounded-lg p-12 text-center transition-all
-          ${isDragging ? 'border-primary-500 bg-primary-50' : 'border-gray-300 hover:border-primary-400'}
+          ${isDragging ? 'border-primary bg-primary/10' : 'border-muted-foreground/25 hover:border-primary/50'}
           ${isProcessing ? 'opacity-50 pointer-events-none' : ''}
         `}
       >
@@ -107,17 +112,14 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onFileUpload }) => {
             </svg>
           </div>
 
-          <div>
-            <label
-              htmlFor="file-upload"
-              className="cursor-pointer text-primary-600 hover:text-primary-700 font-semibold"
-            >
-              {isProcessing ? 'Processing...' : 'Click to upload'}
-            </label>
-            <span className="text-gray-600"> or drag and drop</span>
+          <div className="space-y-2">
+            <Button asChild variant={isProcessing ? "secondary" : "default"} size="lg" disabled={isProcessing}>
+              <label htmlFor="file-upload" className="cursor-pointer">
+                {isProcessing ? 'Processing...' : 'Choose File or Drag & Drop'}
+              </label>
+            </Button>
+            <p className="text-sm text-muted-foreground">CSV or TXT files up to 100MB</p>
           </div>
-
-          <p className="text-sm text-gray-500">CSV or TXT files up to 100MB</p>
         </div>
 
         {isProcessing && (
@@ -130,23 +132,12 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onFileUpload }) => {
       </div>
 
       {error && (
-        <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
-          <div className="flex items-center">
-            <svg
-              className="w-5 h-5 text-red-600 mr-2"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <p className="text-sm text-red-800">{error}</p>
-          </div>
-        </div>
+        <Alert variant="destructive" className="mt-4">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
       )}
+      </CardContent>
+    </Card>
     </div>
   );
 };
