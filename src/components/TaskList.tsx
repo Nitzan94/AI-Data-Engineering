@@ -4,7 +4,6 @@ import { TaskCard } from './TaskCard';
 import { CodeModal } from './CodeModal';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 interface TaskListProps {
   tasks: DataTask[];
