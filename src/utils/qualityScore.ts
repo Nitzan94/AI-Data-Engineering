@@ -1,7 +1,7 @@
 import { ColumnProfile, DataIssue, DataQualityScore, CSVData } from '../types';
 
 export function calculateQualityScore(
-  csvData: CSVData,
+  _csvData: CSVData,
   columnProfiles: ColumnProfile[],
   issues: DataIssue[]
 ): DataQualityScore {
@@ -34,7 +34,7 @@ function calculateCompleteness(columnProfiles: ColumnProfile[]): number {
   return avgCompleteness;
 }
 
-function calculateValidity(columnProfiles: ColumnProfile[], issues: DataIssue[]): number {
+function calculateValidity(_columnProfiles: ColumnProfile[], issues: DataIssue[]): number {
   const typeIssues = issues.filter((i) => i.type === 'type_mismatch' || i.type === 'invalid_values');
 
   if (typeIssues.length === 0) return 100;
@@ -74,16 +74,14 @@ function calculateConsistency(columnProfiles: ColumnProfile[]): number {
   return Math.max(0, 100 - inconsistencyPercentage * 2);
 }
 
-function calculateUniqueness(columnProfiles: ColumnProfile[], issues: DataIssue[]): number {
+function calculateUniqueness(_columnProfiles: ColumnProfile[], issues: DataIssue[]): number {
   const duplicateIssues = issues.filter((i) => i.type === 'duplicates');
 
   if (duplicateIssues.length === 0) return 100;
 
   // Deduct based on duplicate percentage
-  const totalDuplicates = duplicateIssues.reduce((sum, issue) => sum + issue.affectedRows.length, 0);
-
-  // Assuming we have access to total row count
-  const duplicatePercentage = 5; // Placeholder - would calculate from actual data
+  // Note: In a real implementation, we would calculate this from actual data
+  const duplicatePercentage = 5; // Placeholder
 
   return Math.max(0, 100 - duplicatePercentage * 5);
 }

@@ -13,13 +13,13 @@ export interface ChartData {
 
 export function createDistributionData(
   columnProfile: ColumnProfile,
-  csvData: CSVData
+  _csvData: CSVData
 ): ChartData | null {
   if (columnProfile.type !== 'number' || !columnProfile.statistics) {
     return null;
   }
 
-  const values = csvData.rows
+  const values = _csvData.rows
     .map((row) => row[columnProfile.name])
     .filter((v) => v !== null && v !== undefined && typeof v === 'number') as number[];
 
@@ -62,7 +62,7 @@ export function createDistributionData(
 
 export function createBoxPlotData(
   columnProfile: ColumnProfile,
-  csvData: CSVData
+  _csvData: CSVData
 ): { stats: NumericStatistics; outliers: number[] } | null {
   if (columnProfile.type !== 'number' || !columnProfile.statistics) {
     return null;
@@ -139,9 +139,6 @@ function calculatePearsonCorrelation(x: any[], y: any[]): number {
 }
 
 export function getCorrelationColor(correlation: number): string {
-  // Normalize correlation from [-1, 1] to [0, 1]
-  const normalized = (correlation + 1) / 2;
-
   // Interpolate between blue (negative) and red (positive)
   if (correlation < 0) {
     const intensity = Math.abs(correlation);

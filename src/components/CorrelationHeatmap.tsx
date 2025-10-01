@@ -105,7 +105,7 @@ export const CorrelationHeatmap: React.FC<CorrelationHeatmapProps> = ({
                           </span>
                         </div>
                         {/* Tooltip on hover */}
-                        <div className="hidden group-hover:block absolute z-10 bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap top-full left-1/2 transform -translate-x-1/2 mt-1">
+                        <div className="hidden group-hover:block absolute z-10 bg-gray-900 text-white text-xs rounded-sm px-2 py-1 whitespace-nowrap top-full left-1/2 transform -translate-x-1/2 mt-1">
                           {row} ↔ {col}
                           <br />
                           Correlation: {correlation.toFixed(3)}
@@ -123,11 +123,11 @@ export const CorrelationHeatmap: React.FC<CorrelationHeatmapProps> = ({
       {/* Legend */}
       <div className="mt-6 flex items-center justify-center gap-4">
         <div className="flex items-center gap-2">
-          <div className="w-12 h-4 bg-gradient-to-r from-blue-500 to-white"></div>
+          <div className="w-12 h-4 bg-linear-to-r from-blue-500 to-white"></div>
           <span className="text-xs text-gray-600">Negative</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-12 h-4 bg-gradient-to-r from-white to-red-500"></div>
+          <div className="w-12 h-4 bg-linear-to-r from-white to-red-500"></div>
           <span className="text-xs text-gray-600">Positive</span>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import { FileUpload } from './components/FileUpload';
 import { QualityDashboard } from './components/QualityDashboard';
 import { TaskList } from './components/TaskList';
@@ -98,7 +98,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
+      <header className="bg-white shadow-xs border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div>
@@ -265,7 +265,7 @@ function App() {
                         {analysisResult.recommendations.map((rec, idx) => (
                           <li key={idx} className="flex items-start text-gray-700">
                             <svg
-                              className="w-5 h-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0"
+                              className="w-5 h-5 text-primary-600 mr-2 mt-0.5 shrink-0"
                               fill="currentColor"
                               viewBox="0 0 20 20"
                             >

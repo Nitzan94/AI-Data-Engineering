@@ -3,8 +3,6 @@ import {
   DataTask,
   ColumnProfile,
   IssueSeverity,
-  TaskCategory,
-  CodeSnippet,
 } from '../types';
 
 export function generateTasks(

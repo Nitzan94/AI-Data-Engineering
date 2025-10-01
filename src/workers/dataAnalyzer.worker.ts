@@ -5,7 +5,6 @@ import {
   DataIssue,
   NumericStatistics,
   StringStatistics,
-  IssueSeverity,
 } from '../types';
 
 interface AnalysisMessage {

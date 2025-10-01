@@ -6,7 +6,7 @@ interface BoxPlotChartProps {
   csvData: CSVData;
 }
 
-export const BoxPlotChart: React.FC<BoxPlotChartProps> = ({ columnProfile, csvData }) => {
+export const BoxPlotChart: React.FC<BoxPlotChartProps> = ({ columnProfile }) => {
   if (columnProfile.type !== 'number' || !columnProfile.statistics) {
     return (
       <div className="text-center py-8 text-gray-500">
@@ -43,17 +43,17 @@ export const BoxPlotChart: React.FC<BoxPlotChartProps> = ({ columnProfile, csvDa
             className="absolute h-0.5 bg-gray-600"
             style={{
               left: `${getPosition(min)}%`,
-              width: `${getPosition(q1) - getPosition(min)}%`,
+              width: `${Number(getPosition(q1)) - Number(getPosition(min))}%`,
               top: '50%',
             }}
           ></div>
 
           {/* Box */}
           <div
-            className="absolute h-full bg-primary-200 border-2 border-primary-600 rounded"
+            className="absolute h-full bg-primary-200 border-2 border-primary-600 rounded-sm"
             style={{
               left: `${getPosition(q1)}%`,
-              width: `${getPosition(q3) - getPosition(q1)}%`,
+              width: `${Number(getPosition(q3)) - Number(getPosition(q1))}%`,
             }}
           >
             {/* Median line */}
@@ -70,7 +70,7 @@ export const BoxPlotChart: React.FC<BoxPlotChartProps> = ({ columnProfile, csvDa
             className="absolute h-0.5 bg-gray-600"
             style={{
               left: `${getPosition(q3)}%`,
-              width: `${getPosition(max) - getPosition(q3)}%`,
+              width: `${Number(getPosition(max)) - Number(getPosition(q3))}%`,
               top: '50%',
             }}
           ></div>
@@ -159,7 +159,7 @@ export const BoxPlotChart: React.FC<BoxPlotChartProps> = ({ columnProfile, csvDa
         <h5 className="text-sm font-semibold text-blue-900 mb-2">📊 How to Read:</h5>
         <div className="text-xs text-blue-800 space-y-1">
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 bg-primary-200 border-2 border-primary-600 rounded"></div>
+            <div className="w-4 h-4 bg-primary-200 border-2 border-primary-600 rounded-sm"></div>
             <span><strong>Box:</strong> Middle 50% of data (Q1 to Q3)</span>
           </div>
           <div className="flex items-center gap-2">

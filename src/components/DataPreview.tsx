@@ -41,15 +41,15 @@ export const DataPreview: React.FC<DataPreviewProps> = ({ data, columnProfiles }
 
       {/* Dataset Stats */}
       <div className="grid grid-cols-3 gap-4 mb-6">
-        <div className="p-4 bg-gradient-to-br from-primary-50 to-primary-100 rounded-lg">
+        <div className="p-4 bg-linear-to-br from-primary-50 to-primary-100 rounded-lg">
           <div className="text-sm text-primary-700 font-medium">Total Rows</div>
           <div className="text-3xl font-bold text-primary-900">{data.rowCount.toLocaleString()}</div>
         </div>
-        <div className="p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-lg">
+        <div className="p-4 bg-linear-to-br from-green-50 to-green-100 rounded-lg">
           <div className="text-sm text-green-700 font-medium">Total Columns</div>
           <div className="text-3xl font-bold text-green-900">{data.columnCount}</div>
         </div>
-        <div className="p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg">
+        <div className="p-4 bg-linear-to-br from-purple-50 to-purple-100 rounded-lg">
           <div className="text-sm text-purple-700 font-medium">Data Points</div>
           <div className="text-3xl font-bold text-purple-900">
             {(data.rowCount * data.columnCount).toLocaleString()}
@@ -161,11 +161,11 @@ export const DataPreview: React.FC<DataPreviewProps> = ({ data, columnProfiles }
         <div className="text-xs font-semibold text-gray-700 mb-2">Legend:</div>
         <div className="flex flex-wrap gap-4 text-xs text-gray-600">
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 bg-orange-50 border border-orange-200 rounded"></div>
+            <div className="w-4 h-4 bg-orange-50 border border-orange-200 rounded-sm"></div>
             <span>Column with issues</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 bg-red-50 border border-red-200 rounded"></div>
+            <div className="w-4 h-4 bg-red-50 border border-red-200 rounded-sm"></div>
             <span>Missing value</span>
           </div>
         </div>

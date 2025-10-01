@@ -27,7 +27,7 @@ export const QualityDashboard: React.FC<QualityDashboardProps> = ({ score }) => 
       <h2 className="text-2xl font-bold mb-6">Data Quality Assessment</h2>
 
       {/* Overall Score */}
-      <div className="mb-8 p-6 bg-gradient-to-r from-primary-50 to-primary-100 rounded-lg">
+      <div className="mb-8 p-6 bg-linear-to-r from-primary-50 to-primary-100 rounded-lg">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-lg font-semibold text-gray-700 mb-1">Overall Quality Score</h3>

@@ -190,7 +190,7 @@ export const IssueDetailCard: React.FC<IssueDetailCardProps> = ({
                       key={idx}
                       className="flex items-start bg-green-50 p-3 rounded-lg border border-green-200"
                     >
-                      <span className="flex-shrink-0 w-6 h-6 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">
+                      <span className="shrink-0 w-6 h-6 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">
                         {idx + 1}
                       </span>
                       <p className="text-gray-700 flex-1">{fix}</p>
@@ -200,7 +200,7 @@ export const IssueDetailCard: React.FC<IssueDetailCardProps> = ({
               </div>
 
               {/* Impact */}
-              <div className="bg-gradient-to-r from-primary-50 to-primary-100 p-4 rounded-lg border border-primary-200">
+              <div className="bg-linear-to-r from-primary-50 to-primary-100 p-4 rounded-lg border border-primary-200">
                 <h3 className="text-lg font-semibold text-primary-900 mb-2 flex items-center">
                   <svg
                     className="w-5 h-5 text-primary-600 mr-2"

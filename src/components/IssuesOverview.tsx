@@ -99,7 +99,7 @@ export const IssuesOverview: React.FC<IssuesOverviewProps> = ({
           return (
             <div
               key={severity}
-              className={`p-4 bg-gradient-to-br ${bgColor} rounded-lg border-2 ${getSeverityColor(severity)} cursor-pointer transition-all`}
+              className={`p-4 bg-linear-to-br ${bgColor} rounded-lg border-2 ${getSeverityColor(severity)} cursor-pointer transition-all`}
               onClick={() => setFilterSeverity(severity)}
             >
               <div className="text-xs font-semibold text-gray-700 uppercase mb-1">
